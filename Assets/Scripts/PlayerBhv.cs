@@ -13,6 +13,8 @@ public class PlayerBhv : MonoBehaviour
     public float movementSpeed = 2f;
     float movementAcel = 0.1f;
 
+    private float horizontalD;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -22,6 +24,9 @@ public class PlayerBhv : MonoBehaviour
 
     void Update()
     {
+        //PROVISÓRIO: Controle por setas do teclado.
+        horizontalD = Input.GetAxis("Horizontal");
+
     }
 
     private void FixedUpdate()
@@ -33,14 +38,22 @@ public class PlayerBhv : MonoBehaviour
         }
          else
         {
-            TouchMovement();
+            //PROVISÓRIO: Controle por setas do teclado.
+            if(horizontalD != 0) {
+                rigMovAcelKeyInput();
+
+            } else {
+                TouchMovement();
+            }
+
         }
     }
 
      void startGame()
     {
+
         
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 || horizontalD != 0)
         {
             Vector2 velocity = rigidbody.velocity;
             if(!VariableControler.gameStarted)
@@ -71,6 +84,7 @@ public class PlayerBhv : MonoBehaviour
             }
         } else {
             SetMovementDirection(0);
+            
         }
     }
 
@@ -83,8 +97,18 @@ public class PlayerBhv : MonoBehaviour
         Vector2 velocity = rigidbody.velocity;
         velocity.x = HorizontalDirection * movementSpeed;
         rigidbody.velocity = velocity;
+     }
+
+
+    //PROVISÓRIO: Controle por setas do teclado
+     void rigMovAcelKeyInput()
+     {
+        Vector2 velocity = rigidbody.velocity;
+        velocity.x = horizontalD * movementSpeed;
+        rigidbody.velocity = velocity;
 
      }
+    
 
 
     //  void OnTriggerEnter2D( Collider2D other) {

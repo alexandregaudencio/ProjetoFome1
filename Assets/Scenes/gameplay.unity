@@ -872,7 +872,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.12
-  m_Text: Tap To Play
+  m_Text: Tap To Play           (use setas horizontais)
 --- !u!222 &1244576699
 CanvasRenderer:
   m_ObjectHideFlags: 0
